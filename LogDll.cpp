@@ -28,7 +28,7 @@ static LogTimestamp GetCurrentTimestamp()
     // 转换为毫秒（Windows FILETIME是从1601年开始的100纳秒单位）
     return (uli.QuadPart / 10000) - 11644473600000LL;
 }
-// 
+
 // 初始化DLL
 LOGAPI BOOL InitializeLogDll()
 {
@@ -142,13 +142,13 @@ LOGAPI BOOL ReadLog(LogEntry* entry)
     return TRUE;
 }
 
-// Get log count
+// 获取当前日志数量
 LOGAPI LONG GetLogCount()
 {
     return g_sharedBuffer.entryCount;
 }
 
-// Clear logs
+// 清除日志
 LOGAPI void ClearLogs()
 {
     if (!g_mutex) return;
@@ -160,7 +160,7 @@ LOGAPI void ClearLogs()
     ReleaseMutex(g_mutex);
 }
 
-// DLL entry point
+// DLL入口点
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
 {
     switch (ul_reason_for_call)
